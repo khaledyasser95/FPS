@@ -46,6 +46,10 @@ public class FPSController : NetworkBehaviour {
     private WeaponManager handsWeapon_Manager;
     private FPSHandsWeapon current_Hands_Weapons;
 
+    public GameObject playerHolder, weaponsHolder;
+    public GameObject[] weapons_FPS;
+    private Camera mainCam;
+    public FPSMouseLock[] mouseLook;
 
 	// Use this for initialization
 	void Start () {
@@ -64,12 +68,65 @@ public class FPSController : NetworkBehaviour {
         handsWeapon_Manager.weapons[0].SetActive(true);
         current_Hands_Weapons = handsWeapon_Manager.weapons[0].GetComponent<FPSHandsWeapon>();
 
-	}
+        if (isLocalPlayer)
+        {
+            playerHolder.layer = LayerMask.NameToLayer("Player");
+            foreach(Transform child in playerHolder.transform)
+            {
+                child.gameObject.layer = LayerMask.NameToLayer("Player");
+            }
+            for(int i=0;i< weapons_FPS.Length;i++)
+            {
+                weapons_FPS[i].layer = LayerMask.NameToLayer("Player");
+
+            }
+            weaponsHolder.layer = LayerMask.NameToLayer("Enemy");
+            foreach (Transform child in weaponsHolder.transform)
+            {
+                child.gameObject.layer = LayerMask.NameToLayer("Enemy");
+            }
+        }
+
+        if (!isLocalPlayer)
+        {
+            playerHolder.layer = LayerMask.NameToLayer("Enemy");
+            foreach (Transform child in playerHolder.transform)
+            {
+                child.gameObject.layer = LayerMask.NameToLayer("Enemy");
+            }
+            for (int i = 0; i < weapons_FPS.Length; i++)
+            {
+                weapons_FPS[i].layer = LayerMask.NameToLayer("Enemy");
+
+            }
+            weaponsHolder.layer = LayerMask.NameToLayer("Player");
+            foreach (Transform child in weaponsHolder.transform)
+            {
+                child.gameObject.layer = LayerMask.NameToLayer("Player");
+            }
+        }
+        if (!isLocalPlayer)
+        {
+            for( int i=0; i<mouseLook.Length;i++)
+            {
+                mouseLook[i].enabled = false;
+            }
+        }
+        mainCam = transform.Find("FPS View").Find("FPS Camera").GetComponent<Camera>();
+        mainCam.gameObject.SetActive(false);
+    }
 	
 	// Update is called once per frame
 	void Update () {
         // IF WE ARE NOT THE LOCAL PLAER
         // WE ARE NOT RUNNING THIS CODE ON OUR OWN COMPUTER
+        if (isLocalPlayer)
+        {
+            if(!mainCam.gameObject.activeInHierarchy)
+            {
+                mainCam.gameObject.SetActive(true);
+            }
+        }
          if (!isLocalPlayer)
         {
             return;
