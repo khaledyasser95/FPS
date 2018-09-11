@@ -1,20 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class FPSShootingControl : MonoBehaviour {
+using UnityEngine.Networking;
+public class FPSShootingControl : NetworkBehaviour {
 
     private Camera mainCam;
     private float fireRate = 15f;
     private float nextTimeToFire = 0f;
 
     [SerializeField]
-    private GameObject concrete_Impact;
+    private GameObject concrete_Impact,blood_Impact;
 
+    public float damageAmount = 5f;
 
 	// Use this for initialization
 	void Start () {
-        mainCam = Camera.main;	
+        mainCam = transform.Find("FPS View").Find("FPS Camera").GetComponent<Camera>();
 	}
 	
 	// Update is called once per frame
@@ -30,11 +31,26 @@ public class FPSShootingControl : MonoBehaviour {
             RaycastHit hit;
             if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit))
             {
-                Instantiate(concrete_Impact, hit.point, Quaternion.LookRotation(hit.normal));
-               // print("WE HIT " + hit.collider.gameObject.name);
-               // print("THE POSITION OF THE GAME OBJECT IS " + hit.transform.position);
-               // print("The POINT WHERE THE HIT HAPPENED IS " + hit.point);
+                if (hit.transform.tag == "Enemy")
+                {
+                    CmdDealDamage(hit.transform.gameObject, hit.point, hit.normal);
+                }
+                else
+                {
+                    Instantiate(concrete_Impact, hit.point, Quaternion.LookRotation(hit.normal));
+                    // print("WE HIT " + hit.collider.gameObject.name);
+                    // print("THE POSITION OF THE GAME OBJECT IS " + hit.transform.position);
+                    // print("The POINT WHERE THE HIT HAPPENED IS " + hit.point);
+                }
+
             }
         }
+    }
+    //VERY IMP CMD IS IMP
+    [Command]
+    void CmdDealDamage(GameObject obj, Vector3 pos , Vector3 rotation)
+    {
+        obj.GetComponent<PlayerHealth>().TakeDamage(damageAmount);
+        Instantiate(blood_Impact, pos, Quaternion.LookRotation(rotation));
     }
 }//class

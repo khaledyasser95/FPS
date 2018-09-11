@@ -2362,12 +2362,15 @@ GameObject:
   - component: {fileID: 114299176008400988}
   - component: {fileID: 114248654387483858}
   - component: {fileID: 114692485364379552}
-  - component: {fileID: 114923903205904730}
   - component: {fileID: 114721386712180878}
+  - component: {fileID: 114752467951406896}
+  - component: {fileID: 114887431310840986}
   - component: {fileID: 114852838319049046}
+  - component: {fileID: 114438187765537338}
+  - component: {fileID: 114513587273408408}
   m_Layer: 0
   m_Name: FPS Soldier 1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9799,6 +9802,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axes: 1
+--- !u!114 &114438187765537338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486131328195806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 4
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
+--- !u!114 &114513587273408408
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486131328195806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95374985194185558}
+  m_ParameterSendBits: 127
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
 --- !u!114 &114523747326486306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9855,6 +9898,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10290548c45701744bfdfe90310d8990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114752467951406896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486131328195806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61378911fdbf8c7479aafc7f791a13b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  concrete_Impact: {fileID: 100002, guid: 2b4ffdf4a64f87d4ca3c0de925e6d343, type: 2}
+  blood_Impact: {fileID: 100006, guid: cb771650f86a58a46ab01616eef4650c, type: 2}
+  damageAmount: 5
 --- !u!114 &114816551660535822
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9911,6 +9968,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8025e8373042df42ac646338115ce40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114887431310840986
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486131328195806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff7d5ccdf839e74aa6867d60650a3a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!114 &114902474626228644
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9924,18 +9993,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootClip: {fileID: 8300000, guid: 8077d84082459fd4ba579dda0e473e20, type: 3}
   reloadclip: {fileID: 8300000, guid: 9e3c5f6b64bc3e74e8ac3e0dcb40a5f0, type: 3}
---- !u!114 &114923903205904730
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1486131328195806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61378911fdbf8c7479aafc7f791a13b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  concrete_Impact: {fileID: 100002, guid: 2b4ffdf4a64f87d4ca3c0de925e6d343, type: 2}
 --- !u!137 &137012743912254248
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
